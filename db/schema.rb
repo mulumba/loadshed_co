@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150629221902) do
+ActiveRecord::Schema.define(version: 20150630220135) do
 
+  create_table "schedules", force: :cascade do |t|
+    t.string   "day",            limit: 255
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.string   "region",         limit: 255
+    t.string   "city",           limit: 255
+    t.text     "affected_areas", limit: 65535
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
 
 end

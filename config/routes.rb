@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
-  root to: 'visitors#index'
-
-  resources :documents do
+  resources :schedules do
     collection { post :import }
   end
 
+  root to: 'visitors#index'
 end

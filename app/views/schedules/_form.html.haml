@@ -1,0 +1,13 @@
+= simple_form_for(@schedule) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :day
+    = f.input :start_time
+    = f.input :end_time
+    = f.input :region
+    = f.input :city
+    = f.input :affected_areas
+
+  .form-actions
+    = f.button :submit
