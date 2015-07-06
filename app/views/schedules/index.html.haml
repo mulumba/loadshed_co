@@ -1,4 +1,4 @@
-%h1 Listing schedules
+%h1 Today's schedule
 
 .media
   .media-body
@@ -24,9 +24,9 @@
             %td= schedule.region
             %td= schedule.city
             %td= schedule.affected_areas
-            %td= link_to 'Show', schedule
-            %td= link_to 'Edit', edit_schedule_path(schedule)
-            %td= link_to 'Destroy', schedule, :method => :delete, :data => { :confirm => 'Are you sure?' }
+            -# %td= link_to 'Show', schedule
+            -# %td= link_to 'Edit', edit_schedule_path(schedule)
+            -# %td= link_to 'Destroy', schedule, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 

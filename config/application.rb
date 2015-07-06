@@ -38,6 +38,6 @@ module LoadshedCo
     config.active_record.raise_in_transactional_callbacks = true
 
     # Filepicker API Config
-    config.filepicker_rails.api_key = "Ad9LuqvSLSGyPNcnV7NLBz"
+    # config.filepicker_rails.api_key = "Ad9LuqvSLSGyPNcnV7NLBz"
   end
 end

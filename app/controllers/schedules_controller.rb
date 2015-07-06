@@ -1,10 +1,15 @@
 class SchedulesController < ApplicationController
+  require 'date'
   before_action :set_schedule, only: [:show, :edit, :update, :destroy]
 
   # GET /schedules
   # GET /schedules.json
   def index
-    @schedules = Schedule.all
+    t = Date::DAYNAMES[Date.today.wday]
+    # Date.today.wday
+    @schedules = Schedule.where("day LIKE '%#{t}%'").order(region: :asc, start_time: :asc)
+
+
   end
 
   # GET /schedules/1
