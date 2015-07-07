@@ -2,14 +2,26 @@ class SchedulesController < ApplicationController
   require 'date'
   before_action :set_schedule, only: [:show, :edit, :update, :destroy]
 
+  def autocomplete
+    render json: Schedule.search(params[:query], fields: [{affected_areas: :text_start}], limit: 10).map(&:affected_areas)
+  end
+
   # GET /schedules
   # GET /schedules.json
   def index
     t = Date::DAYNAMES[Date.today.wday]
     # Date.today.wday
-    @schedules = Schedule.where("day LIKE '%#{t}%'").order(region: :asc, start_time: :asc)
+    if params[:region] == "lsk" then
+      my_region = "Lusaka Division"
+    elsif params[:region] == "cb" then
+      my_region = "Copperbelt Divison"
+    elsif params[:region] == "nd" then
+      my_region = "Northern Division"
+    elsif params[:region] == "sd" then
+      my_region = "Southern Division"
+    end
 
-
+    @schedules = Schedule.by_region(my_region).where("day LIKE '%#{t}%'").order(region: :asc, start_time: :asc).search "milk", page: params[:page],per_page: 20
   end
 
   # GET /schedules/1

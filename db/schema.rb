@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150630220135) do
+ActiveRecord::Schema.define(version: 20150707132629) do
+
+  create_table "regions", force: :cascade do |t|
+    t.string   "region",      limit: 255
+    t.text     "region_code", limit: 65535
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
 
   create_table "schedules", force: :cascade do |t|
     t.string   "day",            limit: 255
@@ -22,6 +29,26 @@ ActiveRecord::Schema.define(version: 20150630220135) do
     t.text     "affected_areas", limit: 65535
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
+    t.integer  "region_id",      limit: 4
   end
 
+  add_index "schedules", ["region_id"], name: "index_schedules_on_region_id", using: :btree
+
+  create_table "searchjoy_searches", force: :cascade do |t|
+    t.string   "search_type",      limit: 255
+    t.string   "query",            limit: 255
+    t.string   "normalized_query", limit: 255
+    t.integer  "results_count",    limit: 4
+    t.datetime "created_at"
+    t.integer  "convertable_id",   limit: 4
+    t.string   "convertable_type", limit: 255
+    t.datetime "converted_at"
+  end
+
+  add_index "searchjoy_searches", ["convertable_id", "convertable_type"], name: "index_searchjoy_searches_on_convertable_id_and_convertable_type", using: :btree
+  add_index "searchjoy_searches", ["created_at"], name: "index_searchjoy_searches_on_created_at", using: :btree
+  add_index "searchjoy_searches", ["search_type", "created_at"], name: "index_searchjoy_searches_on_search_type_and_created_at", using: :btree
+  add_index "searchjoy_searches", ["search_type", "normalized_query", "created_at"], name: "index_searchjoy_searches_on_search_type_and_normalized_query_an", using: :btree
+
+  add_foreign_key "schedules", "regions"
 end

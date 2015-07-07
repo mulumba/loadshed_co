@@ -13,13 +13,12 @@ group :development, :test do
   gem 'spring'
 end
 gem 'bootstrap-sass'
-# gem 'filepicker-rails'
-# gem "paperclip", "~> 4.3"
 gem 'haml-rails'
 gem 'high_voltage'
 gem 'mysql2'
-# gem 'roo', '~> 2.0.0'
 gem 'simple_form'
+gem 'searchkick'
+gem 'searchjoy'
 group :development do
   gem 'better_errors'
   gem 'capistrano', '~> 3.0.1'

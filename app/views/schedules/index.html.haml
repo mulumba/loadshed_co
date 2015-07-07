@@ -1,32 +1,47 @@
 %h1 Today's schedule
 
-.media
-  .media-body
-    %table.table.table-hover
-      %thead
-        %tr
-          %th Day
-          %th Start time
-          %th End time
-          %th Region
-          %th City
-          %th Affected areas
-          %th
-          %th
-          %th
+%input#query{ :type => 'text', :name => 'query' }
+%javascript{ :src=> 'jquery.js' }
+%javascript{ :src=> 'typeahead.js' }
 
-      %tbody
-        - @schedules.each do |schedule|
-          %tr
-            %td= schedule.day
-            %td= schedule.start_time.strftime("%H:%M")
-            %td= schedule.end_time.strftime("%H:%M")
-            %td= schedule.region
-            %td= schedule.city
-            %td= schedule.affected_areas
-            -# %td= link_to 'Show', schedule
-            -# %td= link_to 'Edit', edit_schedule_path(schedule)
-            -# %td= link_to 'Destroy', schedule, :method => :delete, :data => { :confirm => 'Are you sure?' }
+%javascript
+  $("#query").typeahead({
+  name: "city",remote: "/schedules/autocomplete?region=%QUERY"
+  });
+
+regions = { :LSK => "Lusaka Division"}
+
+%ul.nav.nav-tabs.nav-justified
+  -# - @regions.each do |region|
+  %li.active{ :role => 'presentation' }
+    = link_to "Lusaka", 'schedules?region=lsk'
+    .media
+      .media-body
+        %table.table.table-hover
+          %thead
+            %tr
+              -# %th Day
+              %th Start time
+              %th End time
+              -# %th Region
+              %th City
+              %th Affected areas
+              %th
+              %th
+              %th
+
+          %tbody
+            - @schedules.each do |schedule|
+              %tr
+                -# %td= schedule.day
+                %td= schedule.start_time.strftime("%H:%M")
+                %td= schedule.end_time.strftime("%H:%M")
+                -# %td= schedule.region
+                %td= schedule.city
+                %td= schedule.affected_areas
+                -# %td= link_to 'Show', schedule
+                -# %td= link_to 'Edit', edit_schedule_path(schedule)
+                -# %td= link_to 'Destroy', schedule, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 

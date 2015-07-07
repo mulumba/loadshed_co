@@ -1,0 +1,25 @@
+%h1 Listing regions
+
+.media
+  .media-body
+    %table.table.table-hover
+      %thead
+        %tr
+          %th Region
+          %th Region code
+          %th
+          %th
+          %th
+
+      %tbody
+        - @regions.each do |region|
+          %tr
+            %td= region.region
+            %td= region.region_code
+            %td= link_to 'Show', region
+            %td= link_to 'Edit', edit_region_path(region)
+            %td= link_to 'Destroy', region, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Region', new_region_path
