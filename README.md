@@ -1,6 +1,8 @@
 Loadshed Co
 ================
 
+Load shedding schedule application – because ZESCO wants to keep us in the dark...even about their schedule.
+
 This application was generated with the [rails_apps_composer](https://github.com/RailsApps/rails_apps_composer) gem
 provided by the [RailsApps Project](http://railsapps.github.io/).
 
@@ -29,20 +31,27 @@ Learn more about [Installing Rails](http://railsapps.github.io/installing-rails.
 Getting Started
 ---------------
 
+
 Documentation and Support
 -------------------------
+
 
 Issues
 -------------
 
+
 Similar Projects
 ----------------
+
 
 Contributing
 ------------
 
+
 Credits
 -------
 
+
 License
 -------
+MIT
